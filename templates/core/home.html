@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE HOUSE — Агентство недвижимости</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0f0f0f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        header nav a:hover {
+            color: #c9a227;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: #c9a227;
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            padding: 50px 10%;
+            background: #111;
+            text-align: center;
+            color: #aaa;
+        }
+
+        @media(max-width:768px){
+            .hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ELITE HOUSE</h1>
+    <nav>
+        <a href="#">Главная</a>
+        <a href="#">Объекты</a>
+        <a href="#">Отзывы</a>
+        <a href="#">Контакты</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Премиальная недвижимость без риска</h2>
+        <p>Помогаем купить, продать и арендовать недвижимость безопасно и выгодно.</p>
+        <a href="#" class="btn">Оставить заявку</a>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Актуальные объекты</h3>
+    <div class="cards">
+        <div class="card reveal">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994">
+            <h4>3-комнатная квартира</h4>
+            <p>150 000$ • Центр города</p>
+        </div>
+
+        <div class="card reveal">
+            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c">
+            <h4>Современный дом</h4>
+            <p>350 000$ • Ташкент</p>
+        </div>
+
+        <div class="card reveal">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d">
+            <h4>Люкс апартаменты</h4>
+            <p>500 000$ • Новостройка</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3 class="section-title">Отзывы клиентов</h3>
+    <div class="cards">
+        <div class="card reveal">
+            <p>"Очень профессиональный подход. Сделка прошла идеально."</p>
+            <strong>— Алексей</strong>
+        </div>
+        <div class="card reveal">
+            <p>"Быстро нашли покупателя. Рекомендую!"</p>
+            <strong>— Мария</strong>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>ELITE HOUSE © 2026 | Все права защищены</p>
+</footer>
+
+<script>
+    // Плавное появление при скролле
+    function revealOnScroll() {
+        const reveals = document.querySelectorAll('.reveal');
+
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+
+            if (elementTop < windowHeight - 100) {
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+                el.style.transition = "all 0.8s ease";
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+</script>
+
+</body>
+</html>
